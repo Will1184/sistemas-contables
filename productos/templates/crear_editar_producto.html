@@ -1,0 +1,34 @@
+{% extends 'plantilla.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4" style="color: #f50d40;">{% if es_editar %}Editar{% else %}Crear{% endif %} Producto</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_nombre">Nombre:</label>
+            <input type="text" name="nombre" id="id_nombre" class="form-control" value="{{ producto.nombre }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="id_descripcion">Descripción:</label>
+            <textarea name="descripcion" id="id_descripcion" class="form-control" required>{{ producto.descripcion }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="id_precio">Precio:</label>
+            <input type="number" name="precio" id="id_precio" class="form-control" value="{{ producto.precio }}" step="0.01" required>
+        </div>
+
+        <div class="form-group">
+            <label for="id_cantidad">Cantidad:</label>
+            <input type="number" name="cantidad" id="id_cantidad" class="form-control" value="{{ producto.cantidad }}" required>
+        </div>
+
+        <button type="submit" class="btn" style="background: #f50d40; color: aliceblue;">
+            {% if es_editar %}Actualizar{% else %}Guardar{% endif %}
+        </button>
+        <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div
+{% endblock %}
