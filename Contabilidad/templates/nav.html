@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    {% comment %} Creamos el nav para que en cada pagina se repita el misma redireccion y ahoramos codigo {% endcomment %}
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+        </ul>
+        <ul>
+            <li><a href="/balanceGeneral">Balance general</a></li>
+        </ul>
+        <ul>
+            <li><a href="/catalogoCuenta">Catalogo Cuenta</a></li>
+        </ul>
+        <ul>
+            <li><a href="/estadoCapital">Estado capital</a></li>
+        </ul>
+        <ul>
+            <li><a href="/estadoResultados">Estado resultados</a></li>
+        </ul>
+        <ul>
+            <li><a href="/transacciones">Transacciones</a></li>
+        </ul>
+        <ul>
+            <li><a href="/inicio/adquisicionMateriaPrima">adqusicion de materia plimas</a></li>
+        </ul>
+        <ul>
+            <li><a href="/inicio/contratacion">Contratacion</a></li>
+        </ul>
+        <ul>
+            <li><a href="/inicio/inventario">Manejo de inventario</a></li>
+        </ul>
+        <ul>
+            <li><a href="/inicio/plantillaGeneralEmpleados">Plantilla general de empreados</a></li>
+        </ul>
+        <ul>
+            <li><a href="/inicio/ventaProducto">Venta de producto</a></li>
+        </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
