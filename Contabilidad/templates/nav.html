@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'styles/plantilla.css' %}" >
 </head>
 <body>
+    {% if user.is_authenticated %}
     {% comment %} Creamos el nav para que en cada pagina se repita el misma redireccion y ahoramos codigo {% endcomment %}
     <nav class="navbar navbar-dark bg-dark ">
         <div class="container-fluid">
@@ -62,9 +63,10 @@
                       <li>
                         <hr class="dropdown-divider">
                       </li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><a class="dropdown-item" href="/logout">Something else here</a></li>
                     </ul>
                   </li>
+                  <button class="btn btn-outline-error" type="submit" href="signout"><a href="signout"> cerrar secion </a></button>
               </ul>
               <form class="d-flex mt-3" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -76,5 +78,6 @@
       </nav>
     {% block content %}
     {% endblock %}
+    {% endif %}
 </body>
 </html>
