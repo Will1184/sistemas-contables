@@ -1,0 +1,13 @@
+<form action="/signin/" method="POST">
+    {% csrf_token %}
+    {{error}}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-lg-12">
+                <h1 class="text-center">login</h1>
+            </div>
+        </div>
+    </div>
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Registrarse</button>
+</form>
