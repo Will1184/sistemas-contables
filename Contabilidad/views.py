@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
+from .models import Cuenta
 
 # Create your views here.
 @login_required(login_url='/signin/')
@@ -13,12 +14,25 @@ def index(request):
 #view de catalogo de cuentas 
 @login_required(login_url='/signin/')
 def catalogoCuenta(request):
-    return render(request,'catalogo_cuenta.html')
+    Cuentas = Cuenta.objects.all()
+    
+    return render(request,'catalogo_cuenta.html',{'Cuentas':Cuentas})
+
 
 #view de Transacciones
 @login_required(login_url='/signin/')
 def transaccion(request):
     return render(request,'transaccion.html')
+
+#view de agregar transaccion
+@login_required(login_url='/signin/')
+def agregarTransaccion(request):
+    return render(request,'Transaccion/agregar_transaccion.html')
+
+#view de agregar periodo
+@login_required(login_url='/signin/')
+def agregarPeriodo(request):
+    return render(request,'Transaccion/agregar_periodo.html')
 
 #view de Balance comprobacion
 @login_required(login_url='/signin/')
@@ -40,6 +54,9 @@ def estadoCapital(request):
 def balanceGeneral(request):
     return render(request,'balance_general.html')
 
+
+
+
 #view de signup
 def signin(request):
     if request.method == 'POST':
@@ -55,7 +72,7 @@ def signin(request):
     else:
         return render(request, 'signin.html', {'form': AuthenticationForm()})
 
-@login_required(login_url='/signin/')
+
 def signout(request):
     logout(request)
     return redirect('signin')
