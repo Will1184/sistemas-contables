@@ -1,0 +1,56 @@
+{% extends "nav.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Agregar Transacción</h1>        
+     <!-- Formulario para agregar una transacción -->
+     <form action="{% url 'agregarTransaccion' %}" method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="cuenta">Cuenta:</label>
+            <select name="cuenta" id="cuenta" class="form-control" required>
+                <option value="">Selecciona una cuenta</option>
+                {% for cuenta in Cuentas %}
+                    <option value="{{ cuenta.id }}">{{ cuenta.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="periodo">Periodo:</label>
+            <select name="periodo" id="periodo" class="form-control" required>
+                <option value="">Selecciona un periodo</option>
+                {% for periodo in Periodos %}
+                    <option value="{{ periodo.id }}">{{ periodo.nombre }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input type="date" name="fecha" id="fecha" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="debe">Debe:</label>
+            <input type="number" step="0.01" name="debe" id="debe" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="haber">Haber:</label>
+            <input type="number" step="0.01" name="haber" id="haber" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripción opcional">
+        </div>
+
+        <button type="submit" class="btn" style="background: #f50d40; color: aliceblue;">
+            Guardar
+        </button>
+        <a href="{% url 'transacciones' %}" class="btn btn-secondary">Cancelar</a>
+    </form>    
+</div>
+
+
+{% endblock %}

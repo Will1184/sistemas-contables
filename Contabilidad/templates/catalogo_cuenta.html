@@ -1,5 +1,28 @@
-
-    {% extends "nav.html" %}
-    {% block content %}
-    <h1>Catalogo Cuenta wssadasdsa</h1>
-    {% endblock %}
+{% extends "nav.html" %}
+{% block content %}
+<div class="container my-4">
+    <h1 class="text-center">Catálogo de Cuentas</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered border-primary table-sm mx-auto" style="width: 80%;">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nombre de Cuenta</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Nivel</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Cuenta in Cuentas %}
+                <tr>
+                    <th scope="row">{{Cuenta.codigo}}</th>
+                    <td>{{Cuenta.nombre}}</td>
+                    <td>{{Cuenta.tipo}}</td>
+                    <td>{{Cuenta.nivel}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

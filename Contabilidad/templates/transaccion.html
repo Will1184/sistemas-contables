@@ -1,5 +1,42 @@
 
     {% extends "nav.html" %}
     {% block content %}
-    <h1>Transacciones</h1>
+    <div class="container my-4">
+        <h1 class="text-center">Transacciones</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered border-primary table-sm mx-auto" style="width: 80%;">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Periodo</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Debe</th>
+                        <th scope="col">Haber</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Transaccion in Transacciones %}
+                    <tr>
+                        <th scope="row">{{Transaccion.cuenta}}</th>
+                        <td>{{Transaccion.periodo}}</td>
+                        <td>{{Transaccion.fecha}}</td>
+                        <td>{{Transaccion.debe}}</td>
+                        <td>{{Transaccion.haber}}</td>
+                        <td>{{Transaccion.descripcion}}</td>
+                        <td><a href="eliminarTransaccion/{{Transaccion.id}}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-center my-4">
+        <a href="agregarTransaccion"><button type="button" class="btn btn-primary">Crear Transacción</button></a>
+        <a href="agregarPeriodo"><button type="button" class="btn btn-secondary">Crear Periodo</button></a>
+        <a href="totalizar"><button type="button" class="btn btn-primary">Totalizar</button></a>
+        <a href="verLibroMayor"><button type="button" class="btn btn-secondary">Ver libro Mayor</button></a>
+    </div>
+</div>
     {% endblock %}
