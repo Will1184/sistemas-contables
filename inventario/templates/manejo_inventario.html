@@ -1,5 +1,33 @@
 
-    {% extends "nav.html" %}
-    {% block content %}
-    <h1>Manejo de inventario</h1>
-    {% endblock %}
+{% extends "nav.html" %}
+{% block content %}
+<div class="container mt-5">
+<h1>Manejo de inventario</h1>
+<table class="table table-bordered table-striped mt-3">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>                
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Precio Venta</th>
+            <th>Precio Compra</th>
+            <th>Fecha de Adquisición</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>                
+            <td>{{ producto.cantidad }}</td>
+            <td>${{ producto.precio_unitario }}</td>
+            <td>${{ producto.precio_venta }}</td>
+            <td>${{ producto.precio_compra }}</td>
+            <td>{{ producto.fecha_adquisicion|date:"d/m/Y H:i" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}
