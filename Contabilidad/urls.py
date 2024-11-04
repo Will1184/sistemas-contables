@@ -7,8 +7,11 @@ urlpatterns = [
     path('signin/', views.signin),
     path('index', views.index, name='index'),
     path('catalogoCuenta/', views.catalogoCuenta, name='catalogoCuenta'),
+    #transacciones
     path('transacciones/', views.transaccion, name='transacciones'),
     path('transacciones/agregarTransaccion/', views.agregarTransaccion, name='agregarTransaccion'),
+    path('transacciones/eliminarTransaccion/<id>', views.eliminarTransaccion, name='eliminarTransaccion'),
+    
     path('transacciones/agregarPeriodo/', views.agregarPeriodo, name='agregarPeriodo'),
     path('balanceComprobacion/', views.balanceComprobacion,name='balanceComprobacion'),
     path('estadoResultados/', views.estadoResultados, name='estadoResultados'),
