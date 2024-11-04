@@ -7,7 +7,7 @@ from .models import ProductoAdquirido, ProductoVendido,Empleado
 class ProductoAdquiridoForm(forms.ModelForm):
     class Meta:
         model = ProductoAdquirido
-        fields = ['nombre', 'cantidad', 'precio_compra', 'fecha_adquisicion']
+        fields = ['nombre', 'cantidad', 'precio_unitario', 'fecha_adquisicion']
 
 class ProductoVendidoForm(forms.ModelForm):
     class Meta:

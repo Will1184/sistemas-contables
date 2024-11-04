@@ -31,7 +31,7 @@ class Periodo(models.Model):
     fecha_fin = models.DateField()
 
     def __str__(self):
-        return self.nombre
+        return f'{self.nombre}- {self.id}'
 
 # transacciones
 class Transaccion(models.Model):
