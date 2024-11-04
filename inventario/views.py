@@ -51,6 +51,7 @@ def editar_material(request,producto_id):
               return redirect('manejo_inventario')         
     return render(request,"editar_material.html", {'producto':producto})
 
+
 @login_required(login_url='/signin/')
 # view de venta de producto
 def venta_producto(request):
@@ -117,7 +118,7 @@ def contratacion(request):
          if form.is_valid():
               form.save() 
               return redirect('plantilla_general_empleados')  
-    return render(request,".html",{'contratacion_empleado': contratacion_empleado})
+    return render(request,"contratacion.html",{'contratacion_empleado': contratacion_empleado})
 
 @login_required(login_url='/signin/')
 def editar_empleado(request,empleado_id):
@@ -129,6 +130,12 @@ def editar_empleado(request,empleado_id):
               form.save() 
               return redirect('plantilla_general_empleados')         
     return render(request,"contratacion.html", {'contratacion_empleado':contratacion_empleado})
+
+@login_required(login_url='/signin/')
+def eliminar_empleado(request,empleado_id):
+    contratacion_empleado = get_object_or_404(Empleado, id=empleado_id)    
+    contratacion_empleado.delete()    
+    return redirect('plantilla_general_empleados')             
 
 @login_required(login_url='/signin/')
 #view de platilla general de empleados

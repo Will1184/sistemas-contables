@@ -27,7 +27,7 @@
             <td> 
                 <a class="btn" style="color: #f50d40; border: 1px solid #f50d40;"  href="{% url 'editar_empleado' empleado_id=empleado.id %}">Editar</a> |
                 <!-- Enlace para eliminar producto -->
-                <a class="btn" style="color: #f50d40; border: 1px solid #f50d40;" href="{% url 'editar_empleado' empleado_id=empleado.id %}">Eliminar</a>
+                <a class="btn" style="color: #f50d40; border: 1px solid #f50d40;" href="{% url 'eliminar_empleado' empleado_id=empleado.id %}">Eliminar</a>
             </td>             
         </tr>
         {% endfor %}
