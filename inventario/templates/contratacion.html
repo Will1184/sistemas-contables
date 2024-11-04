@@ -1,0 +1,45 @@
+
+{% extends "nav.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Contratacion de Empleados</h1>        
+     <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="dui">Numero de Dui:</label>
+            <input type="number" name="dui" id="dui" class="form-control" value="{{ contratacion_empleado.dui }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="nombres">Nombres:</label>
+            <input type="text" name="nombres" id="nombres" class="form-control" required>{{ contratacion_empleado.nombres }}</input>
+        </div>
+
+        <div class="form-group">
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" name="apellidos" id="apellidos" class="form-control" value="{{ contratacion_empleado.apellidos }}"   required>
+        </div>
+
+        <div class="form-group">
+            <label for="puesto">Puesto:</label>
+            <input type="text" name="puesto" id="puesto" class="form-control" value="{{ contratacion_empleado.puesto }}"   required>
+        </div>
+
+        <div class="form-group">
+            <label for="fecha_venta"> Salario:</label>
+            <input type="number" name="salario" id="salario" class="form-control" value="{{ contratacion_empleado.salario }}" required>
+        </div>
+        <div class="form-group">
+            <label for="fecha_contratacion"> Fecha de Contratacion:</label>
+            <input type="date" name="fecha_contratacion" id="fecha_contratacion" class="form-control" value="{{ contratacion_empleado.fecha_contratacion }}" required>
+        </div>  
+
+        <button type="submit" class="btn" style="background: #f50d40; color: aliceblue;">
+            Guardar
+        </button>
+        <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Cancelar</a>
+    </form>    
+</div
+
+{% endblock %}
