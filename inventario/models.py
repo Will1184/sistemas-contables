@@ -1,16 +1,15 @@
 from django.db import models
-from django.db import models
-
     
 class ProductoAdquirido(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)    
     cantidad = models.PositiveIntegerField()
-    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
-    precio_venta = models.DecimalField(max_digits=10, decimal_places=2)
-    precio_compra = models.DecimalField(max_digits=10, decimal_places=2)
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2,null=False,default=0)
+    precio_venta = models.DecimalField(max_digits=10, decimal_places=2,null=True,default=0)
+    precio_compra = models.DecimalField(max_digits=10, decimal_places=2,default=0)
     cantidad = models.PositiveIntegerField()
-    fecha_adquisicion = models.DateTimeField()    
+    iva = models.PositiveIntegerField(default=21)
+    fecha_adquisicion = models.DateField()    
 
     def __str__(self):
         return self.nombre
@@ -21,8 +20,9 @@ class ProductoVendido(models.Model):
     cantidad = models.PositiveIntegerField()
     fecha_venta = models.DateField()
     precio_venta = models.DecimalField(max_digits=10, decimal_places=2)
-    iva = models.DecimalField(max_digits=4, decimal_places=2, default=0.21)  # Por ejemplo, 21%
-
+    iva = models.DecimalField(max_digits=4, decimal_places=2, default=21)  
+    total = models.DecimalField(max_digits=10, decimal_places=2,null=False, default=0)
+    
     def __str__(self):
         return f"{self.nombre} - {self.cantidad} unidades"
     

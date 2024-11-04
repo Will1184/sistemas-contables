@@ -2,7 +2,7 @@
 {% extends "nav.html" %}
 {% block content %}
 <div class="container mt-5">
-<h1>Plantilla general de empreados</h1>
+<h1>Plantilla general de empleados</h1>
 <table class="table table-bordered table-striped mt-3">
     <thead class="thead-dark">
         <tr>
@@ -10,6 +10,9 @@
             <th>Nombres</th>
             <th>Apellidos</th>                
             <th>Salario</th>                
+            <th>Puesto</th>                
+            <th>fecha contratacion</th>       
+            <th>Opciones</th>         
         </tr>
     </thead>
     <tbody>
@@ -18,7 +21,14 @@
             <td>{{ empleado.dui }}</td>
             <td>{{ empleado.nombres }}</td>
             <td>{{ empleado.apellidos }}</td>                
-            <td>${{ empleado.salario }}</td>                
+            <td>${{ empleado.salario }}</td>               
+            <td>{{ empleado.puesto }}</td>   
+            <td>{{ empleado.fecha_contratacion }}</td>    
+            <td> 
+                <a class="btn" style="color: #f50d40; border: 1px solid #f50d40;"  href="{% url 'editar_empleado' empleado_id=empleado.id %}">Editar</a> |
+                <!-- Enlace para eliminar producto -->
+                <a class="btn" style="color: #f50d40; border: 1px solid #f50d40;" href="{% url 'eliminar_empleado' empleado_id=empleado.id %}">Eliminar</a>
+            </td>             
         </tr>
         {% endfor %}
     </tbody>

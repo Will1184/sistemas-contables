@@ -12,7 +12,9 @@
             <th>Precio Unitario</th>
             <th>Precio Venta</th>
             <th>Precio Compra</th>
+            <th>Iva</th>
             <th>Fecha de Adquisición</th>
+            <th>Opciones</th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +26,13 @@
             <td>${{ producto.precio_unitario }}</td>
             <td>${{ producto.precio_venta }}</td>
             <td>${{ producto.precio_compra }}</td>
-            <td>{{ producto.fecha_adquisicion|date:"d/m/Y H:i" }}</td>
+            <td>{{ producto.iva }}</td>
+            <td>{{ producto.fecha_adquisicion|date:"d/m/Y" }}</td>
+            <td> 
+                        <a class="btn" style="color: #f50d40; border: 1px solid #f50d40;"  href="{% url 'editar_material' producto_id=producto.id %}">Editar</a> |
+                        <!-- Enlace para eliminar producto -->
+                        <a class="btn" style="color: #f50d40; border: 1px solid #f50d40;" href="{% url 'editar_material' producto_id=producto.id %}">Eliminar</a>
+                    </td>
         </tr>
         {% endfor %}
     </tbody>
