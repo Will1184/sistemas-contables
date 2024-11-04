@@ -11,8 +11,14 @@ urlpatterns = [
     path('transacciones/', views.transaccion, name='transacciones'),
     path('transacciones/agregarTransaccion/', views.agregarTransaccion, name='agregarTransaccion'),
     path('transacciones/eliminarTransaccion/<id>', views.eliminarTransaccion, name='eliminarTransaccion'),
-    
     path('transacciones/agregarPeriodo/', views.agregarPeriodo, name='agregarPeriodo'),
+    
+    #Totalizar
+    path('transacciones/totalizar/', views.totalizar, name='totalizar'),
+    #libro mayor
+    path('transacciones/verLibroMayor/', views.libroMayor, name='libro'),
+    
+    
     path('balanceComprobacion/', views.balanceComprobacion,name='balanceComprobacion'),
     path('estadoResultados/', views.estadoResultados, name='estadoResultados'),
     path('estadoCapital/', views.estadoCapital, name='estadoCapital'),
