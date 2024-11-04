@@ -3,40 +3,35 @@
 {% block content %}
 
 <div class="container mt-5">
-    <h1 class="mb-4">Venta de Productos</h1>        
-     <!-- Formulario para adquisición de productos -->
+    
+    <h1 class="mb-4">Venta de Productos</h1>                
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
      <form method="POST">
         {% csrf_token %}
         <div class="form-group">
-            <label for="id_nombre">Nombre:</label>
-            <input type="text" name="nombre" id="id_nombre" class="form-control" value="{{ producto.nombre }}" required>
+            <label for="lista_productos">Seleccione un producto</label>
+            <select id="nombre" name="nombre" class="form-control">
+                <option value="">Seleccione un producto</option>
+                {% for nombre in productos %}
+                    <option value="{{ nombre.id }}">{{ nombre.nombre }}</option>
+                {% empty %}
+                    <option value="">No hay productos disponibles</option>
+                {% endfor %}
+            </select>
         </div>
         
         <div class="form-group">
             <label for="cantidad">cantidad:</label>
-            <input type="number" name="cantidad" id="cantidad" class="form-control" required>{{ producto.cantidad }}</input>
+            <input type="number" min="1" name="cantidad" id="cantidad" class="form-control" required>{{ producto.cantidad }}</input>
         </div>
 
-        <div class="form-group">
-            <label for="precio_venta">Precio:</label>
-            <input type="number" name="precio_venta" id="precio_venta" class="form-control" value="{{ producto.precio_venta }}"   required>
-        </div>
 
-        <div class="form-group">
-            <label for="iva">iva:</label>
-            <input type="number" name="iva" id="iva" class="form-control" value="{{ producto.iva }}"   required>
-        </div>
-
-        <div class="form-group">
-            <label for="fecha_venta"> fecha_venta:</label>
-            <input type="date" name="fecha_venta" id="fecha_venta" class="form-control" value="{{ producto.fecha_venta }}" required>
-        </div>
-
-        <button type="submit" class="btn" style="background: #f50d40; color: aliceblue;">
+        <button type="submit" class="btn mt-3" style="background: #f50d40; color: aliceblue;">
             Guardar
         </button>
-        <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Cancelar</a>
+    
     </form>    
 </div
-
 {% endblock %}
