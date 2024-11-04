@@ -1,0 +1,46 @@
+
+{% extends "nav.html" %}
+{% block content %}
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Editar material</h1>        
+         <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_nombre">Nombre:</label>
+                <input type="text" name="nombre" id="id_nombre" class="form-control" value="{{ producto.nombre }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cantidad">cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" min="1" class="form-control" required value="{{producto.cantidad }}">
+            </div>
+    
+            <div class="form-group">
+                <label for="precio_compra">Precio de compra:</label>
+                <input type="number" name="precio_compra" id="precio_compra" class="form-control" value="{{ producto.precio_compra }}"   required>
+            </div>
+
+            <div class="form-group">
+                <label for="precio_unitario">Precio de unitario:</label>
+                <input type="number" name="precio_unitario" id="precio_unitario" class="form-control" value="{{ producto.precio_unitario }}"   required>
+            </div>
+
+            <div class="form-group">
+                <label for="precio_venta">Precio de Venta:</label>
+                <input type="number" name="precio_venta" id="precio_venta" class="form-control" value="{{ producto.precio_venta }}"   required>
+            </div>
+    
+            <div class="form-group">
+                <label for="iva">Iva:</label>
+                <input type="number" name="iva" id="iva" class="form-control" value="{{ producto.iva }}"   required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_adquisicion">fecha adquisicion:</label>
+                <input type="date"  name="fecha_adquisicion" id="fecha_adquisicion" class="form-control" value="{{ producto.fecha_adquisicion }}" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Editar</button>
+        </form>
+    </div
+{% endblock %}
