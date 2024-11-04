@@ -2,7 +2,7 @@ import random
 from .models  import ProductoAdquirido,Empleado, ProductoVendido
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .forms import ProductoAdquiridoForm,ProductoVendidoForm,ProductoForm
+from .forms import ProductoAdquiridoForm,ProductoVendidoForm,ProductoForm,EmpleadoForm
 from datetime import datetime
 from django.utils import timezone
 from decimal import Decimal
@@ -113,11 +113,22 @@ def contratacion(request):
         "fecha_contratacion": datetime.now() 
     }
     if request.method == 'POST':
-         form = ProductoAdquiridoForm(request.POST)
+         form = EmpleadoForm(request.POST)
          if form.is_valid():
               form.save() 
               return redirect('plantilla_general_empleados')  
-    return render(request,"contratacion.html",{'empleado': contratacion_empleado})
+    return render(request,".html",{'contratacion_empleado': contratacion_empleado})
+
+@login_required(login_url='/signin/')
+def editar_empleado(request,empleado_id):
+    contratacion_empleado = get_object_or_404(Empleado, id=empleado_id)
+    if request.method == 'POST':
+        print(request.POST) 
+        form = EmpleadoForm(request.POST, instance=contratacion_empleado)        
+        if form.is_valid():
+              form.save() 
+              return redirect('plantilla_general_empleados')         
+    return render(request,"contratacion.html", {'contratacion_empleado':contratacion_empleado})
 
 @login_required(login_url='/signin/')
 #view de platilla general de empleados

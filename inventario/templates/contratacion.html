@@ -8,12 +8,12 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="dui">Numero de Dui:</label>
-            <input type="number" name="dui" id="dui" class="form-control" value="{{ contratacion_empleado.dui }}" required>
+            <input type="number" maxlength="9" name="dui" id="dui" class="form-control" value="{{ contratacion_empleado.dui }}" required>
         </div>
         
         <div class="form-group">
             <label for="nombres">Nombres:</label>
-            <input type="text" name="nombres" id="nombres" class="form-control" required>{{ contratacion_empleado.nombres }}</input>
+            <input type="text" name="nombres" id="nombres" class="form-control" required value="{{ contratacion_empleado.nombres }}">
         </div>
 
         <div class="form-group">
@@ -35,10 +35,9 @@
             <input type="date" name="fecha_contratacion" id="fecha_contratacion" class="form-control" value="{{ contratacion_empleado.fecha_contratacion }}" required>
         </div>  
 
-        <button type="submit" class="btn" style="background: #f50d40; color: aliceblue;">
+        <button type="submit" class="btn mt-3" style="background: #f50d40; color: aliceblue;">
             Guardar
         </button>
-        <a href="{% url 'lista_productos' %}" class="btn btn-secondary">Cancelar</a>
     </form>    
 </div
 
