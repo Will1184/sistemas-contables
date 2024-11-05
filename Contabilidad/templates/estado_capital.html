@@ -1,5 +1,29 @@
-
-    {% extends "nav.html" %}
-    {% block content %}
-    <h1>estado capital</h1>
-    {% endblock %}
+{% extends "nav.html" %}
+{% block content %}
+<div class="container my-4">
+    <h1 class="text-center">Estado de Capital</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered border-primary table-sm mx-auto" style="width: 80%;">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Nombre de la Cuenta</th>
+                    <th scope="col">Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cuenta, saldo in saldos_capital.items %}
+                <tr>
+                    <td>{{ cuenta }}</td>
+                    <td>{{ saldo }}</td>
+                </tr>
+                {% endfor %}
+                <!-- Total de capital al final de la tabla -->
+                <tr class="table-secondary">
+                    <td><strong>Total de Capital</strong></td>
+                    <td><strong>{{ total_capital }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

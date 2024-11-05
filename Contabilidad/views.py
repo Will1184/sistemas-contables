@@ -1,10 +1,11 @@
+from django.db.models import Sum
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from .models import Cuenta, Periodo, Transaccion
-from django.db.models import Sum
+
 
 # Create your views here.
 @login_required(login_url='/signin/')
@@ -26,7 +27,7 @@ def transaccion(request):
     if request.method == 'POST':
         periodo = request.POST['periodo']
         transacciones = Transaccion.objects.filter(periodo_id=periodo)
-        Periodos = Periodo.objects.all().values('id','nombre')
+        Periodos = Periodo.objects.all().values('id','mes','ano')
         context = { 
             'Transacciones':transacciones,
             'Periodos':Periodos
@@ -159,12 +160,62 @@ def estadoResultados(request):
 #view de Estado de capital
 @login_required(login_url='/signin/')
 def estadoCapital(request):
-    return render(request,'estado_capital.html')
+        # Filtra las cuentas que inician con "3" y obtiene sus transacciones
+    transacciones_capital = Transaccion.objects.filter(cuenta__codigo__startswith="3")
+    
+    # Calcula el saldo para cada cuenta
+    saldos_capital = {}
+    for transaccion in transacciones_capital:
+        cuenta_nombre = transaccion.cuenta.nombre
+        saldo = saldos_capital.get(cuenta_nombre, 0) + (transaccion.debe - transaccion.haber)
+        saldos_capital[cuenta_nombre] = saldo
+    
+    # Calcula el total de capital
+    total_capital = sum(saldos_capital.values())
+    
+    return render(request, 'estado_capital.html', {
+        'saldos_capital': saldos_capital,
+        'total_capital': total_capital,
+    })
 
 #view de Balance General
 @login_required(login_url='/signin/')
 def balanceGeneral(request):
-    return render(request,'balance_general.html')
+    # Obtener todas las cuentas de cada tipo
+    activos = Cuenta.objects.filter(tipo='ACTIVO')
+    pasivos = Cuenta.objects.filter(tipo='PASIVO')
+    patrimonio = Cuenta.objects.filter(tipo='PATRIMONIO')
+
+    # Calcular total de activos
+    total_activos = sum(
+        transaccion.debe - transaccion.haber
+        for cuenta in activos
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Calcular total de pasivos
+    total_pasivos = sum(
+        transaccion.debe - transaccion.haber
+        for cuenta in pasivos
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Calcular total de patrimonio
+    total_patrimonio = sum(
+        transaccion.debe - transaccion.haber
+        for cuenta in patrimonio
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Crear un diccionario con los resultados
+    context = {
+        'total_activos': total_activos,
+        'total_pasivos': total_pasivos,
+        'total_patrimonio': total_patrimonio,
+        'saldo_total': total_activos - (total_pasivos + total_patrimonio)  # Para verificar la ecuación
+    }
+
+    return render(request, 'balance_general.html', context)
 
 
 
