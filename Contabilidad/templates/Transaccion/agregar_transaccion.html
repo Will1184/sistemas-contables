@@ -3,48 +3,54 @@
 
 <div class="container mt-5">
     <h1 class="mb-4">Agregar Transacción</h1>        
-     <!-- Formulario para agregar una transacción -->
-     <form action="{% url 'agregarTransaccion' %}" method="POST">
+    <!-- Formulario para agregar una transacción -->
+    <form id="transaccionForm" action="{% url 'agregarTransaccion' %}" method="POST">
         {% csrf_token %}
         
-        <div class="form-group">
-            <label for="cuenta">Cuenta:</label>
-            <select name="cuenta" id="cuenta" class="form-control" required>
-                <option value="">Selecciona una cuenta</option>
-                {% for cuenta in Cuentas %}
-                    <option value="{{ cuenta.id }}">{{ cuenta.nombre }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="periodo">Periodo:</label>
-            <select name="periodo" id="periodo" class="form-control" required>
-                <option value="">Selecciona un periodo</option>
-                {% for periodo in Periodos %}
-                    <option value="{{ periodo.id }}">{{ periodo.nombre }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="fecha">Fecha:</label>
-            <input type="date" name="fecha" id="fecha" class="form-control" required>
+        <div id="transacciones-container">
+            <div class="transaccion">
+                <div class="form-group">
+                    <label for="cuenta_0">Cuenta:</label>
+                    <select name="cuenta" id="cuenta_0" class="form-control" required>
+                        <option value="">Selecciona una cuenta</option>
+                        {% for cuenta in Cuentas %}
+                            <option value="{{ cuenta.id }}">{{ cuenta.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="periodo_0">Periodo:</label>
+                    <select name="periodo" id="periodo_0" class="form-control" required>
+                        <option value="">Selecciona un periodo</option>
+                        {% for periodo in Periodos %}
+                            <option value="{{ periodo.id }}">{{ periodo.mes }} {{ periodo.ano }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fecha_0">Fecha:</label>
+                    <input type="date" name="fecha" id="fecha_0" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="debe_0">Debe:</label>
+                    <input type="number" step="0.01" name="debe" id="debe_0" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="haber_0">Haber:</label>
+                    <input type="number" step="0.01" name="haber" id="haber_0" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descripcion_0">Descripción:</label>
+                    <input type="text" name="descripcion" id="descripcion_0" class="form-control" placeholder="Descripción opcional">
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label for="debe">Debe:</label>
-            <input type="number" step="0.01" name="debe" id="debe" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="haber">Haber:</label>
-            <input type="number" step="0.01" name="haber" id="haber" class="form-control" required>
-        </div>
-
-        <div class="form-group">
-            <label for="descripcion">Descripción:</label>
-            <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripción opcional">
-        </div>
-
+        <button type="button" class="btn btn-primary mb-3" id="add-transaccion" style="background: #28a745; color: white;">Agregar Otra Transacción</button>
+        
         <button type="submit" class="btn" style="background: #f50d40; color: aliceblue;">
             Guardar
         </button>
@@ -52,5 +58,27 @@
     </form>    
 </div>
 
+<script>
+    let transaccionCount = 1;  // Contador para las transacciones
+
+    document.getElementById('add-transaccion').onclick = function() {
+        // Clonar el primer formulario de transacción
+        const container = document.getElementById('transacciones-container');
+        const newTransaccion = container.firstElementChild.cloneNode(true);
+        
+        // Cambiar los IDs y nombres para que sean únicos
+        const inputs = newTransaccion.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            const name = input.name;
+            input.name = name;  // Mantenemos el mismo nombre
+            input.id = name + '_' + transaccionCount;  // Modificamos el ID
+            input.value = '';  // Limpiar el campo
+        });
+
+        // Agregar la nueva transacción al contenedor
+        container.appendChild(newTransaccion);
+        transaccionCount++;  // Incrementar el contador
+    };
+</script>
 
 {% endblock %}

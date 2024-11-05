@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from .models import Cuenta, Periodo, Transaccion
+from django.db.models import Sum
 
 # Create your views here.
 @login_required(login_url='/signin/')
@@ -22,32 +23,56 @@ def catalogoCuenta(request):
 #view de Transacciones
 @login_required(login_url='/signin/')
 def transaccion(request):
-    Transacciones = Transaccion.objects.all()
-    return render(request,'transaccion.html',{
-        'Transacciones':Transacciones}
-                  )
+    if request.method == 'POST':
+        periodo = request.POST['periodo']
+        transacciones = Transaccion.objects.filter(periodo_id=periodo)
+        Periodos = Periodo.objects.all().values('id','nombre')
+        context = { 
+            'Transacciones':transacciones,
+            'Periodos':Periodos
+        }
+        return render(request,'transaccion.html',context)
+    else:
+        Transacciones = Transaccion.objects.all()
+        Periodos = Periodo.objects.all()
+        contex = {
+            'Transacciones':Transacciones,
+            'Periodos':Periodos
+        }
+        return render(request,'transaccion.html',contex)
 
 #view de agregar transaccion
 @login_required(login_url='/signin/')
 def agregarTransaccion(request):
     Cuentas = Cuenta.objects.all().values('id','nombre')
-    Periodos = Periodo.objects.all().values('id','nombre')
+    Periodos = Periodo.objects.all().values('id','mes','ano')
     context = {
         'Cuentas':Cuentas,
         'Periodos':Periodos
     }
     if request.method == 'POST':
-        cuenta = request.POST['cuenta']
-        periodo = request.POST['periodo']
-        fecha = request.POST['fecha']
-        descripcion = request.POST['descripcion']
-        cuenta_debe = request.POST['debe']
-        cuenta_haber = request.POST['haber']
-        transaccion = Transaccion(cuenta_id=cuenta,periodo_id=periodo,fecha=fecha,descripcion=descripcion,debe=cuenta_debe,haber=cuenta_haber)
-        transaccion.save()
-        return redirect('transacciones')
+        cuentas = request.POST.getlist('cuenta')
+        periodos = request.POST.getlist('periodo')
+        fechas = request.POST.getlist('fecha')
+        deudas = request.POST.getlist('debe')
+        haberes = request.POST.getlist('haber')
+        descripciones = request.POST.getlist('descripcion')
 
-    return render(request,'Transaccion/agregar_transaccion.html',
+        for i in range(len(cuentas)):
+            if cuentas[i] and periodos[i]:  # Asegúrate de que los campos necesarios estén completos
+                transaccion = Transaccion(
+                    cuenta_id=cuentas[i],
+                    periodo_id=periodos[i],
+                    fecha=fechas[i],
+                    debe=deudas[i],
+                    haber=haberes[i],
+                    descripcion=descripciones[i]
+                )
+                transaccion.save()
+        return redirect('transacciones')  # Redirigir a la vista de transacciones
+
+    else:
+        return render(request,'Transaccion/agregar_transaccion.html',
                 context
                 )
 
@@ -61,20 +86,70 @@ def eliminarTransaccion(request,id):
 @login_required(login_url='/signin/')
 def agregarPeriodo(request):
     if request.method == 'POST':
-        nombre = request.POST['id_nombre']
-        fecha_inicio = request.POST['fecha_inicio']
-        fecha_fin = request.POST['fecha_final']
+        mes = request.POST.get('mes')  # Cambia a get para evitar MultiValueDictKeyError
+        ano = request.POST.get('ano')
         
-        perido = Periodo(nombre=nombre,fecha_inicio=fecha_inicio,fecha_fin=fecha_fin)
-        perido.save()
-        return redirect('transacciones')
+        if mes and ano:  # Verifica que mes y ano no sean None
+            periodo = Periodo(mes=int(mes), ano=int(ano))  # Convierte a entero si es necesario
+            periodo.save()
+            return redirect('transacciones')  # Asegúrate de que 'transacciones' sea el nombre correcto
     else:
-        return render(request,'Transaccion/agregar_periodo.html')
+        meses = range(1, 13)  # Crear una lista de meses
+        
+    return render(request, 'Transaccion/agregar_periodo.html', {'meses': meses})
+
+#view de totalizar periodo
+@login_required(login_url='/signin/')
+def totalizar(request):
+    # Calcula el total de 'debe' y 'haber'
+    total_debe = Transaccion.objects.aggregate(total_debe=Sum('debe'))['total_debe'] or 0
+    total_haber = Transaccion.objects.aggregate(total_haber=Sum('haber'))['total_haber'] or 0
+    
+    # Obtiene todas las transacciones para mostrarlas en la vista
+    transacciones = Transaccion.objects.all()
+    
+    return render(request, 'Transaccion/totalizar.html', {
+        'total_debe': total_debe,
+        'total_haber': total_haber,
+        'transacciones': transacciones,
+    }) 
+
+#libro mayor
+def libroMayor(request):
+    # Agrupar las transacciones por cuenta y calcular totales
+    cuentas_con_totales = (
+        Transaccion.objects.values('cuenta__id', 'cuenta__nombre')
+        .annotate(total_debe=Sum('debe'), total_haber=Sum('haber'))
+        .order_by('cuenta__id')
+    )
+    
+    # Obtener todas las transacciones ordenadas por cuenta
+    transacciones = Transaccion.objects.order_by('cuenta__id', 'fecha')
+    
+    return render(request, 'Transaccion/libro_mayor.html', {
+        'cuentas_con_totales': cuentas_con_totales,
+        'transacciones': transacciones,
+    })
+
+
+
+
 
 #view de Balance comprobacion
 @login_required(login_url='/signin/')
 def balanceComprobacion(request):
-    return render(request,'balance_comprobacion.html')
+        # Calcula el total de 'debe' y 'haber'
+    total_debe = Transaccion.objects.aggregate(total_debe=Sum('debe'))['total_debe'] or 0
+    total_haber = Transaccion.objects.aggregate(total_haber=Sum('haber'))['total_haber'] or 0
+    
+    # Obtiene todas las transacciones para mostrarlas en la vista
+    transacciones = Transaccion.objects.all()
+    
+    return render(request, 'balance_comprobacion.html', {
+        'total_debe': total_debe,
+        'total_haber': total_haber,
+        'transacciones': transacciones,
+    }) 
 
 #view de Estado de Resultados
 @login_required(login_url='/signin/')

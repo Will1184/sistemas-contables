@@ -4,6 +4,22 @@
     <div class="container my-4">
         <h1 class="text-center">Transacciones</h1>
         <div class="table-responsive">
+            <form action="{% url 'transacciones' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="periodo">Periodo:</label>
+                    <select name="periodo" id="periodo" class="form-control" required>
+                        <option value="">Selecciona un periodo</option>
+                        {% for periodo in Periodos %}
+                            <option value="{{ periodo.id }}">{{ periodo.mes}}-{{periodo.ano}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Guardar
+                </button>
+            </form>
+            
             <table class="table table-bordered border-primary table-sm mx-auto" style="width: 80%;">
                 <thead class="table-dark">
                     <tr>
@@ -33,10 +49,11 @@
         </div>
     </div>
     <div class="text-center my-4">
-        <a href="agregarTransaccion"><button type="button" class="btn btn-primary">Crear Transacción</button></a>
-        <a href="agregarPeriodo"><button type="button" class="btn btn-secondary">Crear Periodo</button></a>
-        <a href="totalizar"><button type="button" class="btn btn-primary">Totalizar</button></a>
-        <a href="verLibroMayor"><button type="button" class="btn btn-secondary">Ver libro Mayor</button></a>
+
+        <a href="{% url 'agregarTransaccion' %}"><button type="button" class="btn btn-primary">Crear Transacción</button></a>
+        <a href="{% url 'agregarPeriodo' %}"><button type="button" class="btn btn-secondary">Crear Periodo</button></a>
+        {% comment %} <a href="{% url 'totalizar'%}"><button type="button" class="btn btn-primary">Totalizar</button></a> {% endcomment %}
+        <a href="{% url 'libro'%}"><button type="button" class="btn btn-secondary">Ver libro Mayor</button></a>
     </div>
 </div>
     {% endblock %}

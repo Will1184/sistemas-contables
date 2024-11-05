@@ -1,0 +1,87 @@
+ID,Nombre,Tipo
+2,Pasivo,PASIVO
+21,Pasivo Corriente,PASIVO
+2101,Cuentas por Pagar,PASIVO
+210101,Proveedores Locales,PASIVO
+21010101,"J & M Consultores y Asesores, S.A. DE C.V.",PASIVO
+21010102,"Credi Q, S.A. de C.V.",PASIVO
+210102,Proveedores del Exterior,PASIVO
+210103,Acreedores por Servicios,PASIVO
+2102,Prestamos Bancarios a Corto Plazo,PASIVO
+210201,Prestamos Bancarios a Corto Plazo,PASIVO
+2103,Porcion Corriente de Prestamos a Largo Plazo,PASIVO
+210301,Porcion Corriente de Prestamos a Largo Plazo,PASIVO
+2104,Beneficios a Empleados Corto Plazo,PASIVO
+210401,Sueldos,PASIVO
+210402,Vacaciones,PASIVO
+210403,Aguinaldos,PASIVO
+210404,Bonificaciones,PASIVO
+210405,Incentivos,PASIVO
+210406,Combustibles,PASIVO
+210407,Cuota Patronal ISSS,PASIVO
+210408,Cuota Patronal AFP,PASIVO
+210409,Insaforp,PASIVO
+210410,Cuota Laboral ISSS,PASIVO
+210411,Cuota Laboral AFP,PASIVO
+2105,Provisiones,PASIVO
+210501,Provisiones,PASIVO
+2106,Otras Cuentas por Pagar,PASIVO
+210601,Debito Fiscal IVA,PASIVO
+210602,Retenciones por Pagar,PASIVO
+210603,Intereses por Pagar,PASIVO
+210604,Otras Cuentas por Pagar,PASIVO
+2107,Gastos Acumulados por Pagar,PASIVO
+210701,Alquileres,PASIVO
+210702,Servicios Basicos,PASIVO
+210703,Impuestos Municipales,PASIVO
+210704,Otros Gastos Acumulados por Pagar,PASIVO
+2108,Cuentas por Pagar a Partes Relacionadas,PASIVO
+210801,Comerciales Corrientes,PASIVO
+210802,Prestamos,PASIVO
+210803,Otras Cuentas por Pagar a Relacionadas,PASIVO
+2109,Impuestos Por Pagar,PASIVO
+210901,Impuestos Por Pagar,PASIVO
+21090101,IVA por Pagar,PASIVO
+21090102,Pago a Cuenta,PASIVO
+21090103,Impuesto Sobre la Renta,PASIVO
+2110,Dividendos por Pagar,PASIVO
+211001,Dividendos Decretados por Pagar,PASIVO
+2111,Anticipos de Clientes,PASIVO
+211101,Anticipos de Clientes,PASIVO
+2112,Obligaciones por Arrendamiento Financiero Corto Plazo,PASIVO
+211201,Obligaciones por Arrendamiento Financiero Corto Plazo,PASIVO
+22,Pasivo No Corriente,PASIVO
+2201,Prestamos Bancarios a Largo Plazo,PASIVO
+220101,Prestamos Bancarios a Largo Plazo,PASIVO
+2202,Obligaciones por Arrendamiento Financiero Largo Plazo,PASIVO
+220201,Obligaciones por Arrendamiento Financiero Largo Plazo,PASIVO
+2203,Pasivo por Impuesto Sobre la Renta Diferido,PASIVO
+220301,Pasivo por Impuesto Sobre la Renta Diferido,PASIVO
+2204,Beneficios a Empleados Largo Plazo,PASIVO
+220401,Indemnizaciones,PASIVO
+2205,Otras Obligaciones a Largo Plazo,PASIVO
+220501,Otras Obligaciones a Largo Plazo,PASIVO
+3,Patrimonio,PATRIMONIO
+31,Patrimonio,PATRIMONIO
+3101,Capital Social,PATRIMONIO
+310101,Capital Social Pagado,PATRIMONIO
+310102,Capital Social No Pagado,PATRIMONIO
+3102,Reserva Legal,PATRIMONIO
+310201,Ejercicios Anteriores,PATRIMONIO
+310202,Ejercicio Corriente,PATRIMONIO
+3103,Superavit por Revaluacion de Activo Fijo,PATRIMONIO
+310301,Bienes Inmuebles,PATRIMONIO
+310302,Bienes Muebles,PATRIMONIO
+3104,Utilidades Acumuladas,PATRIMONIO
+310401,Ejercicios Anteriores,PATRIMONIO
+31040101,Utilidades año 2015,PATRIMONIO
+31040102,Utilidades del Ejercicio 2022,PATRIMONIO
+31040103,Utilidades del Ejercicio 2023,PATRIMONIO
+3105,Perdidas Acumuladas,PATRIMONIO
+310501,Ejercicios Anteriores,PATRIMONIO
+31050101,Perdida del Ejercicio 2016,PATRIMONIO
+3106,Resultados del Ejercicio,PATRIMONIO
+310601,Utilidad del Ejercicio,PATRIMONIO
+310602,Perdidas del Ejercicio,PATRIMONIO
+3107,Efectos por Adopcion a NIIF,PATRIMONIO
+310701,Efecto por Adopcion a NIIF,PATRIMONIO

@@ -1,5 +1,41 @@
-
-    {% extends "nav.html" %}
-    {% block content %}
-    <h1>Estados de resultados</h1>
-    {% endblock %}
+{% extends "nav.html" %}
+{% block content %}
+<div class="container my-4">
+    <h1 class="text-center">Estados de resultado</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered border-primary table-sm mx-auto" style="width: 80%;">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Periodo</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Debe</th>
+                    <th scope="col">Haber</th>
+                    <th scope="col">Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaccion in transacciones %}
+                <tr>
+                    <td>{{ transaccion.cuenta }}</td>
+                    <td>{{ transaccion.periodo }}</td>
+                    <td>{{ transaccion.fecha }}</td>
+                    <td>{{ transaccion.debe }}</td>
+                    <td>{{ transaccion.haber }}</td>
+                    <td>{{ transaccion.descripcion }}</td>
+                </tr>
+                {% endfor %}
+                <!-- Totales al final de la tabla -->
+                <tr class="table-secondary">
+                    <td colspan="3"><strong>Total</strong></td>
+                    <td><strong>{{ total_debe }}</strong></td>
+                    <td><strong>{{ total_haber }}</strong></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+         <div class="text-center my-4">
+    </div>
+    </div>
+</div>
+{% endblock %}

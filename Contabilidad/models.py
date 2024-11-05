@@ -7,6 +7,8 @@ class Cuenta(models.Model):
         ('ACTIVO', 'Activo'),
         ('PASIVO', 'Pasivo'),
         ('PATRIMONIO', 'Patrimonio'),
+        ('INGRESOS', 'Ingresos'),
+        ('GASTOS', 'Gastos'),
         ('RESULTADO_DEUDOR', 'Cuentas de Resultado Deudoras'),
         ('RESULTADO_ACREEDOR', 'Cuentas de Resultado Acreedoras'),
         ('CIERRE', 'Cuenta de Cierre'),
@@ -26,12 +28,31 @@ class Cuenta(models.Model):
 from django.db import models
 
 class Periodo(models.Model):
-    nombre = models.CharField(max_length=100)
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
+    MESES = [
+        (1, "Enero"),
+        (2, "Febrero"),
+        (3, "Marzo"),
+        (4, "Abril"),
+        (5, "Mayo"),
+        (6, "Junio"),
+        (7, "Julio"),
+        (8, "Agosto"),
+        (9, "Septiembre"),
+        (10, "Octubre"),
+        (11, "Noviembre"),
+        (12, "Diciembre"),
+    ]
+
+    
+    mes = models.PositiveSmallIntegerField(choices=MESES, default=1)  # Valor por defecto para mes
+    ano = models.PositiveIntegerField(default=2024)  # Valor por defecto para año
 
     def __str__(self):
-        return self.nombre
+        return f"{self.get_mes_display()} {self.ano}"
+
+    class Meta:
+        verbose_name_plural = "Periodos"
+        unique_together = ('mes', 'ano')  # Evita duplicados  # Evita que se dupliquen el mismo mes y año
 
 # transacciones
 class Transaccion(models.Model):

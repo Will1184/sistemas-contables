@@ -1,0 +1,42 @@
+{% extends "nav.html" %}
+{% block content %}
+<div class="container my-4">
+    <h1 class="text-center">Libro Mayor</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered border-primary table-sm mx-auto" style="width: 80%;">
+            <thead class="table-dark">
+                <tr>
+                    <th>Cuenta</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cuenta in cuentas_con_totales %}
+                    <tr class="table-primary">
+                        <td colspan="5"><strong>{{ cuenta.cuenta__nombre }}</strong></td>
+                    </tr>
+                    {% for transaccion in transacciones %}
+                        {% if transaccion.cuenta.id == cuenta.cuenta__id %}
+                        <tr>
+                            <td></td>
+                            <td>{{ transaccion.fecha }}</td>
+                            <td>{{ transaccion.descripcion }}</td>
+                            <td>{{ transaccion.debe }}</td>
+                            <td>{{ transaccion.haber }}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <tr class="table-secondary">
+                        <td colspan="3"><strong>Total de {{ cuenta.cuenta__nombre }}</strong></td>
+                        <td><strong>{{ cuenta.total_debe }}</strong></td>
+                        <td><strong>{{ cuenta.total_haber }}</strong></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
