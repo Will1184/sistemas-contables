@@ -159,7 +159,23 @@ def estadoResultados(request):
 #view de Estado de capital
 @login_required(login_url='/signin/')
 def estadoCapital(request):
-    return render(request,'estado_capital.html')
+        # Filtra las cuentas que inician con "3" y obtiene sus transacciones
+    transacciones_capital = Transaccion.objects.filter(cuenta__codigo__startswith="3")
+    
+    # Calcula el saldo para cada cuenta
+    saldos_capital = {}
+    for transaccion in transacciones_capital:
+        cuenta_nombre = transaccion.cuenta.nombre
+        saldo = saldos_capital.get(cuenta_nombre, 0) + (transaccion.debe - transaccion.haber)
+        saldos_capital[cuenta_nombre] = saldo
+    
+    # Calcula el total de capital
+    total_capital = sum(saldos_capital.values())
+    
+    return render(request, 'estado_capital.html', {
+        'saldos_capital': saldos_capital,
+        'total_capital': total_capital,
+    })
 
 #view de Balance General
 @login_required(login_url='/signin/')
