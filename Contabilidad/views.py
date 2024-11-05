@@ -5,11 +5,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from .models import Cuenta, Periodo, Transaccion
 from django.db.models import Sum
-# Create your views here.
 
+# Create your views here.
 @login_required(login_url='/signin/')
 def index(request):
     return render(request,'index.html')
+
 
 #view de catalogo de cuentas 
 @login_required(login_url='/signin/')
@@ -137,23 +138,23 @@ def libroMayor(request):
 #view de Balance comprobacion
 @login_required(login_url='/signin/')
 def balanceComprobacion(request):
-    return render(request,'balance_comprobacion.html')
-
-#view de Estado de Resultados
-@login_required(login_url='/signin/')
-def estadoResultados(request):
-    # Calcula el total de 'debe' y 'haber'
+        # Calcula el total de 'debe' y 'haber'
     total_debe = Transaccion.objects.aggregate(total_debe=Sum('debe'))['total_debe'] or 0
     total_haber = Transaccion.objects.aggregate(total_haber=Sum('haber'))['total_haber'] or 0
     
     # Obtiene todas las transacciones para mostrarlas en la vista
     transacciones = Transaccion.objects.all()
     
-    return render(request, 'estado_resultados.html', {
+    return render(request, 'balance_comprobacion.html', {
         'total_debe': total_debe,
         'total_haber': total_haber,
         'transacciones': transacciones,
     }) 
+
+#view de Estado de Resultados
+@login_required(login_url='/signin/')
+def estadoResultados(request):
+    return render(request,'estado_resultados.html')
 
 #view de Estado de capital
 @login_required(login_url='/signin/')
