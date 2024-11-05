@@ -52,4 +52,4 @@ def poblar_cuentas():
 
 if __name__ == "__main__":
     poblar_cuentas()
-    print("Catálogo de cuentas poblado exitosamente.")
+    print("Catálogo de cuentas poblado exitosamente.")  
