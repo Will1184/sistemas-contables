@@ -26,7 +26,7 @@ def transaccion(request):
     if request.method == 'POST':
         periodo = request.POST['periodo']
         transacciones = Transaccion.objects.filter(periodo_id=periodo)
-        Periodos = Periodo.objects.all().values('id','nombre')
+        Periodos = Periodo.objects.all().values('id','mes','ano')
         context = { 
             'Transacciones':transacciones,
             'Periodos':Periodos
