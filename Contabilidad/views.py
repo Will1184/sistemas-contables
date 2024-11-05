@@ -51,15 +51,26 @@ def agregarTransaccion(request):
         'Periodos':Periodos
     }
     if request.method == 'POST':
-        cuenta = request.POST['cuenta']
-        periodo = request.POST['periodo']
-        fecha = request.POST['fecha']
-        descripcion = request.POST['descripcion']
-        cuenta_debe = request.POST['debe']
-        cuenta_haber = request.POST['haber']
-        transaccion = Transaccion(cuenta_id=cuenta,periodo_id=periodo,fecha=fecha,descripcion=descripcion,debe=cuenta_debe,haber=cuenta_haber)
-        transaccion.save()
-        return redirect('transacciones')
+        cuentas = request.POST.getlist('cuenta')
+        periodos = request.POST.getlist('periodo')
+        fechas = request.POST.getlist('fecha')
+        deudas = request.POST.getlist('debe')
+        haberes = request.POST.getlist('haber')
+        descripciones = request.POST.getlist('descripcion')
+
+        for i in range(len(cuentas)):
+            if cuentas[i] and periodos[i]:  # Asegúrate de que los campos necesarios estén completos
+                transaccion = Transaccion(
+                    cuenta_id=cuentas[i],
+                    periodo_id=periodos[i],
+                    fecha=fechas[i],
+                    debe=deudas[i],
+                    haber=haberes[i],
+                    descripcion=descripciones[i]
+                )
+                transaccion.save()
+        return redirect('transacciones')  # Redirigir a la vista de transacciones
+
     else:
         return render(request,'Transaccion/agregar_transaccion.html',
                 context
