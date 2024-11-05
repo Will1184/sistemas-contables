@@ -2,40 +2,55 @@
 {% block content %}
 <div class="container my-4">
     <h1 class="text-center">Estados de resultado</h1>
-    <div class="table-responsive">
-        <table class="table table-bordered border-primary table-sm mx-auto" style="width: 80%;">
-            <thead class="table-dark">
-                <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Periodo</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Debe</th>
-                    <th scope="col">Haber</th>
-                    <th scope="col">Descripcion</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for transaccion in transacciones %}
-                <tr>
-                    <td>{{ transaccion.cuenta }}</td>
-                    <td>{{ transaccion.periodo }}</td>
-                    <td>{{ transaccion.fecha }}</td>
-                    <td>{{ transaccion.debe }}</td>
-                    <td>{{ transaccion.haber }}</td>
-                    <td>{{ transaccion.descripcion }}</td>
-                </tr>
-                {% endfor %}
-                <!-- Totales al final de la tabla -->
-                <tr class="table-secondary">
-                    <td colspan="3"><strong>Total</strong></td>
-                    <td><strong>{{ total_debe }}</strong></td>
-                    <td><strong>{{ total_haber }}</strong></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-         <div class="text-center my-4">
-    </div>
-    </div>
+    <table class="table table-bordered border-primary table-sm mx-auto mb-4" style="width: 80%;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Descripción</th>
+                <th scope="col">Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Total Ingresos</td>
+                <td>${{ total_ingresos|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td>Total Costos de Ventas</td>
+                <td>${{ total_costos_venta|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td><strong>Utilidad Bruta</strong></td>
+                <td><strong>${{ utilidad_bruta|floatformat:2 }}</strong></td>
+            </tr>
+            <tr>
+                <td>Total Gastos Operativos</td>
+                <td>${{ total_gastos|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td><strong>Utilidad Operativa</strong></td>
+                <td><strong>${{ utilidad_operativa|floatformat:2 }}</strong></td>
+            </tr>
+            <tr>
+                <td>Otros Ingresos</td>
+                <td>${{ otros_ingresos|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td>Otros Gastos</td>
+                <td>${{ otros_gastos|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td><strong>Utilidad Antes de Impuestos</strong></td>
+                <td><strong>${{ utilidad_antes_impuestos|floatformat:2 }}</strong></td>
+            </tr>
+            <tr>
+                <td>Impuestos sobre la Renta</td>
+                <td>${{ impuestos|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td><strong>Utilidad Neta</strong></td>
+                <td><strong>${{ utilidad_neta|floatformat:2 }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 {% endblock %}

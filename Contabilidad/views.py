@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from .models import Cuenta, Periodo, Transaccion
+from django.db.models import Sum, F
 
 
 # Create your views here.
@@ -155,7 +156,61 @@ def balanceComprobacion(request):
 #view de Estado de Resultados
 @login_required(login_url='/signin/')
 def estadoResultados(request):
-    return render(request,'estado_resultados.html')
+    
+    ingresos = Cuenta.objects.filter(tipo='INGRESOS')
+    costos_venta = Cuenta.objects.filter(tipo='COSTOS_DE_VENTA')  # Asegúrate de que el tipo exista
+    gastos = Cuenta.objects.filter(tipo='GASTOS')  # Esto incluye todos los gastos
+
+    # Calcular ingresos totales
+    total_ingresos = sum(
+        transaccion.haber
+        for cuenta in ingresos
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Calcular costos de ventas totales
+    total_costos_venta = sum(
+        transaccion.debe
+        for cuenta in costos_venta
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Calcular gastos operativos totales
+    total_gastos = sum(
+        transaccion.debe
+        for cuenta in gastos
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Cálculos del estado de resultados
+    utilidad_bruta = total_ingresos - total_costos_venta
+    utilidad_operativa = utilidad_bruta - total_gastos
+
+    # Otros ingresos y gastos
+    otros_ingresos = Transaccion.objects.filter(cuenta__tipo='RESULTADO_ACREEDOR').aggregate(total=Sum(F('haber')))['total'] or 0
+    otros_gastos = Transaccion.objects.filter(cuenta__tipo='RESULTADO_DEUDOR').aggregate(total=Sum(F('debe')))['total'] or 0
+
+    # Utilidad Antes de Impuestos
+    utilidad_antes_impuestos = utilidad_operativa + otros_ingresos - otros_gastos
+
+    # Impuestos sobre la renta (suponiendo un 30%)
+    impuestos = utilidad_antes_impuestos * 0.30 if utilidad_antes_impuestos > 0 else 0
+
+    # Utilidad Neta
+    utilidad_neta = utilidad_antes_impuestos - impuestos
+
+    return render(request, 'estado_resultados.html', {
+    'total_ingresos': total_ingresos,
+    'total_costos_venta': total_costos_venta,
+    'total_gastos': total_gastos,
+    'utilidad_bruta': utilidad_bruta,
+    'utilidad_operativa': utilidad_operativa,
+    'otros_ingresos': otros_ingresos,
+    'otros_gastos': otros_gastos,
+    'utilidad_antes_impuestos': utilidad_antes_impuestos,
+    'impuestos': impuestos,
+    'utilidad_neta': utilidad_neta,
+})
 
 #view de Estado de capital
 @login_required(login_url='/signin/')
