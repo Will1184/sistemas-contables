@@ -34,10 +34,6 @@ def adquisicion_material(request):
             'precio_compra': '',
             'fecha_adquisicion': datetime.now()
         }
-       cuenta = Cuenta.objects.get(id=6) 
-       print(type(cuenta.id))
-       periodos = Periodo.objects.all()            
-       print(periodos)
        if request.method == 'POST':
         print(request.POST) 
         form = ProductoAdquiridoForm(request.POST)

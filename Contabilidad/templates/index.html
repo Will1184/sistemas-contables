@@ -1,5 +1,47 @@
 
     {% extends "nav.html" %}
     {% block content %}
-    <h1>index</h1>
+    <div class="container mt-5">    
+        <div class="list-group flex-md-row align-middle" >
+      <a href="/catalogoCuenta" class="shadow-sm list-group-item list-group-item-action w-50 me-2 mt-2" style="border-radius:12px ; border: 1px solid #dee2e6; ">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Catalogo</h5>
+        </div>
+        <div style=" border:1px solid black ; border-radius: 10px;"> </div>
+        <p class="mb-1">Un catálogo de cuentas es una lista de todas las entradas y salidas de dinero de tu negocio.</p>                
+      </a>      
+
+      <a href="/transacciones" class="shadow-sm list-group-item list-group-item-action w-50 me-2 mt-2" style="border-radius:12px ; border: 1px solid #dee2e6; ">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Transacciones</h5>
+        </div>
+        <div style=" border:1px solid black ; border-radius: 10px;"> </div>
+        <p class="mb-1">Las transacciones son como las puertas por donde entra y sale el dinero.</p>                
+      </a>      
+      <a href="/inicio/inventario/" class="shadow-sm list-group-item list-group-item-action w-50 me-2 mt-2" style="border-radius:12px ; border: 1px solid #dee2e6; ">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Inventario</h5>
+        </div>
+        <div style=" border:1px solid black ; border-radius: 10px;"> </div>
+        <p class="mb-1">Almacén de tu negocio.</p>                
+      </a>   
+      <a href="/inicio/ventaProducto/" class="shadow-sm list-group-item list-group-item-action w-50 me-2 mt-2" style="border-radius:12px ; border: 1px solid #dee2e6; ">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Venta de Productos</h5>
+        </div>
+        <div style=" border:1px solid black ; border-radius: 10px;"> </div>
+        <p class="mb-1">Transacción de venta.</p>                
+      </a>   
+
+      <a href="/inicio/adquisicionMaterial/" class="shadow-sm list-group-item list-group-item-action w-50 me-2 mt-2" style="border-radius:12px ; border: 1px solid #dee2e6; ">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">Adquisicion</h5>
+        </div>
+        <div style=" border:1px solid black ; border-radius: 10px;"> </div>
+        <p class="mb-1">Transacción de adquisición de materiales.</p>                
+      </a>   
+      
+    </div>
+    </div
+
     {% endblock %}

@@ -21,7 +21,7 @@
             <select name="periodo" id="periodo" class="form-control" required>
                 <option value="">Selecciona un periodo</option>
                 {% for periodo in Periodos %}
-                    <option value="{{ periodo.id }}">{{ periodo.nombre }}</option>
+                    <option value="{{ periodo.id }}">{{ periodo.mes }}{{periodo.ano}}</option>
                 {% endfor %}
             </select>
         </div>

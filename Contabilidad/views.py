@@ -45,7 +45,7 @@ def transaccion(request):
 @login_required(login_url='/signin/')
 def agregarTransaccion(request):
     Cuentas = Cuenta.objects.all().values('id','nombre')
-    Periodos = Periodo.objects.all().values('id','nombre')
+    Periodos = Periodo.objects.all().values('id','mes','ano')
     context = {
         'Cuentas':Cuentas,
         'Periodos':Periodos
@@ -60,8 +60,8 @@ def agregarTransaccion(request):
         transaccion = Transaccion(cuenta_id=cuenta,periodo_id=periodo,fecha=fecha,descripcion=descripcion,debe=cuenta_debe,haber=cuenta_haber)
         transaccion.save()
         return redirect('transacciones')
-
-    return render(request,'Transaccion/agregar_transaccion.html',
+    else:
+        return render(request,'Transaccion/agregar_transaccion.html',
                 context
                 )
 
