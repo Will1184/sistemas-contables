@@ -1,5 +1,33 @@
 
-    {% extends "nav.html" %}
-    {% block content %}
-    <h1>balance general</h1>
+{% extends "nav.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Balance General</h1>
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th>Descripción</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Total Activos</td>
+                <td>{{ total_activos }}</td>
+            </tr>
+            <tr>
+                <td>Total Pasivos</td>
+                <td>{{ total_pasivos }}</td>
+            </tr>
+            <tr>
+                <td>Total Patrimonio</td>
+                <td>{{ total_patrimonio }}</td>
+            </tr>
+            <tr>
+                <td><strong>Saldo Total</strong></td>
+                <td><strong>{{ saldo_total }}</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
     {% endblock %}

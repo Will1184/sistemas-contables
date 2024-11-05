@@ -164,7 +164,41 @@ def estadoCapital(request):
 #view de Balance General
 @login_required(login_url='/signin/')
 def balanceGeneral(request):
-    return render(request,'balance_general.html')
+    # Obtener todas las cuentas de cada tipo
+    activos = Cuenta.objects.filter(tipo='ACTIVO')
+    pasivos = Cuenta.objects.filter(tipo='PASIVO')
+    patrimonio = Cuenta.objects.filter(tipo='PATRIMONIO')
+
+    # Calcular total de activos
+    total_activos = sum(
+        transaccion.debe - transaccion.haber
+        for cuenta in activos
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Calcular total de pasivos
+    total_pasivos = sum(
+        transaccion.debe - transaccion.haber
+        for cuenta in pasivos
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Calcular total de patrimonio
+    total_patrimonio = sum(
+        transaccion.debe - transaccion.haber
+        for cuenta in patrimonio
+        for transaccion in Transaccion.objects.filter(cuenta=cuenta)
+    )
+
+    # Crear un diccionario con los resultados
+    context = {
+        'total_activos': total_activos,
+        'total_pasivos': total_pasivos,
+        'total_patrimonio': total_patrimonio,
+        'saldo_total': total_activos - (total_pasivos + total_patrimonio)  # Para verificar la ecuación
+    }
+
+    return render(request, 'balance_general.html', context)
 
 
 
