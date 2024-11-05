@@ -1,0 +1,252 @@
+﻿1,Activos,ACTIVO,NO,1
+11,Activo Corriente,ACTIVO,NO,2
+1101,Efectivo y Equivalentes de Efectivo,ACTIVO,NO,3
+110101,Caja Chica,ACTIVO,SI,4
+110102,Caja General,ACTIVO,SI,4
+110103,Bancos Cuentas Corrientes,ACTIVO,NO,4
+11010301,Banco Hipotecario 00530010000,ACTIVO,SI,5
+11010302,Banco Promerica # 10000002011775,ACTIVO,SI,5
+110104,Depositos en Cuentas de Ahorro,ACTIVO,NO,4
+110105,Depositos en Moneda Extranjera,ACTIVO,NO,4
+110106,Depositos a Plazo Menores a Tres Meses,ACTIVO,NO,4
+1102,Inversiones Financieras a Corto Plazo,ACTIVO,NO,3
+110201,Inventarios,ACTIVO,NO,4
+110202,Productos Electronicos,ACTIVO,NO,4
+110203,Computadoras,ACTIVO,NO,4
+1103,Cuentas Comerciales por Cobrar,ACTIVO,NO,3
+110301,Cuentas por Cobrar Clientes,ACTIVO,NO,4
+11030101,Clientes 1,ACTIVO,SI,5
+11030102,Clientes 2,ACTIVO,SI,5
+11030103,Clientes 3,ACTIVO,SI,5
+11030199,Varios,ACTIVO,SI,5
+110302,Documentos COmerciales por Cobrar,ACTIVO,NO,4
+110303,Intereses por Cobrar,ACTIVO,NO,4
+110304,Estimacion por Incobrabilidad de Cuentas por Cobrar Comerciales,ACTIVO,SI,4
+1104,Cuentas por Cobrar Arrendamieno Financiero y Operativo,ACTIVO,NO,3
+110401,Cuentas por Cobrar Arrendamieno Financiero,ACTIVO,NO,4
+110402,Cuentas por Cobrar Arrendamieno Operativo,ACTIVO,NO,4
+110403,Estimacion por Incobrabilidad de Cuentas por Cobrar Arrendamieno,ACTIVO,SI,4
+1105,Otras Cuentas por Cobrar,ACTIVO,NO,3
+110501,Reclamos,ACTIVO,NO,4
+110502,Anticipos de Proveedores,ACTIVO,NO,4
+110503,IVA Credito Fiscal,ACTIVO,NO,4
+11050301,Credito Fiscal IVA,ACTIVO,SI,5
+11050302,Retencion de IVA,ACTIVO,SI,5
+11050303,Percepcion,ACTIVO,SI,5
+110599,Deudores Divesos,ACTIVO,SI,4
+1106,Cuentas Por Cobrar Partes Relacionadas,ACTIVO,NO,3
+110601,Comerciales Corrientes,ACTIVO,NO,4
+11060199,Varios,ACTIVO,SI,5
+110602,Prestamos,ACTIVO,NO,4
+110603,Anticipos,ACTIVO,NO,4
+110604,Estimacion por Incobrabilidad de Cuentas por Cobrar Relacionadas,ACTIVO,NO,4
+1107,Cuentas por Cobrar Accionistas,ACTIVO,NO,3
+110701,Cuentas por Cobrar Accionistas,ACTIVO,NO,4
+1108,Prestamos a Accionistas,ACTIVO,NO,3
+110801,Prestamos a Accionistas,ACTIVO,NO,4
+1109,Funcionarios y Empleados,ACTIVO,NO,3
+110901,Funcionarios y Empleados,ACTIVO,NO,4
+1110,Inventarios,ACTIVO,NO,3
+111001,Inventarios,ACTIVO,NO,4
+111098,Pedidos en Transito - Inventario,ACTIVO,NO,4
+111099,Provsion por Producto Obsoleto o Dañado,ACTIVO,SI,4
+1111,Pagos Anticipados,ACTIVO,NO,3
+111101,Gastos Anticipados,ACTIVO,NO,4
+111102,Beneficios a Empleados por Anticipados,ACTIVO,NO,4
+111103,Primas de Seguro,ACTIVO,NO,4
+111104,Alquileres,ACTIVO,NO,4
+111105,Pago a Cuenta,ACTIVO,SI,4
+111106,Retenciones de Renta,ACTIVO,SI,4
+1112,Depositos en Garantia,ACTIVO,NO,3
+111201,Depositos en Garantia,ACTIVO,NO,4
+12,Activo No Corriente,ACTIVO,NO,2
+1201,Activos no Corriente Mantenido Para la Venta,ACTIVO,NO,3
+120101,Activos no Corriente Mantenido Para la Venta,ACTIVO,NO,4
+1202,Propiedad Planta y Equipo,ACTIVO,NO,3
+120201,Bienes Inmuebles,ACTIVO,NO,4
+120202,Bienes Muebles,ACTIVO,NO,4
+12020201,Mobiliario y Equipo,ACTIVO,SI,5
+12020202,Equipo de Computo,ACTIVO,SI,5
+12020203,Vehiculos,ACTIVO,SI,5
+12020299,Proyectos en Proceso,ACTIVO,SI,5
+120203,Depreciacion Acumulada (CR),ACTIVO,NO,4
+12020301,Depreciacion de Mobiliario y Equipos,ACTIVO,SI,5
+120204,Deterioro Acumulado de Propiedad Planta y Equipo,ACTIVO,NO,4
+1203,Propiedad de Inversion,ACTIVO,NO,3
+120301,Bienes Inmuebles,ACTIVO,NO,4
+120302,Depreciacion de Propiedades de Inversion,ACTIVO,NO,4
+120303,Deterioro Acumulado de Propiedades de Inversion,ACTIVO,NO,4
+1204,Arrendamientos Financieros,ACTIVO,NO,3
+120401,Bienes Inmuebles,ACTIVO,NO,4
+120402,Bienes Muebles,ACTIVO,NO,4
+120403,Depreciacion de Arrendamientos Financieros,ACTIVO,NO,4
+120404,Deterioro Acumulado de Arrendamientos Financieros,ACTIVO,NO,4
+1205,Cuentas por Cobrar Arrendamiento Financiero LP,ACTIVO,NO,3
+120501,Cuentas por Cobrar Arrendamiento Financiero LP,ACTIVO,NO,4
+120502,Estimacion para Cuentas por Cobrar Arrendamiento Financiero LP,ACTIVO,NO,4
+1206,Activos Intangibles,ACTIVO,NO,3
+120601,Software,ACTIVO,NO,4
+120602,Aplicaciones Informaticas,ACTIVO,NO,4
+120603,Patentes,ACTIVO,NO,4
+120604,Plusvalia Comprada,ACTIVO,NO,4
+120605,Derechos de Marca,ACTIVO,NO,4
+12060501,Dominio Web y Correo,ACTIVO,SI,5
+120606,Conseciones y Franquicias,ACTIVO,NO,4
+120607,Aportizacion Acumulada,ACTIVO,NO,4
+1207,Inversiones a Largo Plazo,ACTIVO,NO,3
+120701,Acciones en Subsidiarias, Afiliadas y Negocios Conjuntos,ACTIVO,NO,4
+120702,Operaciones en Bolsa de Valores,ACTIVO,NO,4
+120703,Depositos a Plazo,ACTIVO,NO,4
+1208,Cuentas y Documentos por Cobrar a Largo Plazo,ACTIVO,NO,3
+120801,Cuentas y Documentos por Cobrar a Largo Plazo,ACTIVO,NO,4
+120802,Prestamos,ACTIVO,NO,4
+120803,Estimacion por Incobrabilidad de Cuentas y Documentos por Cobrar a Largo Plazo,ACTIVO,SI,4
+1210,Activo por Impuesto Diferido,ACTIVO,NO,3
+121001,Activo por Impuesto Diferido,ACTIVO,SI,4
+2,Pasivo,PASIVO,NO,1
+21,Pasivo Corriente,PASIVO,NO,2
+2101,Cuentas por Pagar,PASIVO,NO,3
+210101,Proveedores Locales,PASIVO,NO,4
+21010101,J & M Consultores y Asesores, S.A. DE C.V.,PASIVO,SI,5
+21010102,Credi Q, S.A. de C.V.,PASIVO,SI,5
+210102,Proveedores del Exterior,PASIVO,NO,4
+210103,Acreedores por Servicios,PASIVO,NO,4
+2102,Prestamos Bancarios a Corto Plazo,PASIVO,NO,3
+210201,Prestamos Bancarios a Corto Plazo,PASIVO,NO,4
+2103,Porcion Corriente de Prestamos a Largo Plazo,PASIVO,NO,3
+210301,Porcion Corriente de Prestamos a Largo Plazo,PASIVO,NO,4
+2104,Beneficios a Empleados Corto Plazo,PASIVO,NO,3
+210401,Sueldos,PASIVO,SI,4
+210402,Vacaciones,PASIVO,SI,4
+210403,Aguinaldos,PASIVO,SI,4
+210404,Bonificaciones,PASIVO,SI,4
+210405,Incentivos,PASIVO,SI,4
+210406,Combustibles,PASIVO,SI,4
+210407,Cuota Patronal ISSS,PASIVO,SI,4
+210408,Cuota Patronal AFP,PASIVO,SI,4
+210409,Insaforp,PASIVO,SI,4
+210410,Cuata Laboral ISSS,PASIVO,SI,4
+210411,Cuota Laborarl AFP,PASIVO,SI,4
+2105,Provisiones,PASIVO,NO,3
+210501,Provisiones,PASIVO,SI,4
+2106,Otras Cuentas por Pagar,PASIVO,NO,3
+210601,Debito Fiscal IVA,PASIVO,SI,4
+210602,Retenciones por Pagar,PASIVO,SI,4
+210603,Intereses por Pagar,PASIVO,SI,4
+210604,Otras Cuentas por Pagar,PASIVO,SI,4
+2107,Gastos Acumulados por Pagar,PASIVO,NO,3
+210701,Alquileres,PASIVO,SI,4
+210702,Servicios Basicos,PASIVO,SI,4
+210703,Impuestos Municipales,PASIVO,SI,4
+210704,Otros Gastos Acumulados por Pagar,PASIVO,SI,4
+2108,Cuentas por Pagar a Partes Relacionadas,PASIVO,NO,3
+210801,Comerciales Corrientes,PASIVO,NO,4
+210802,Prestamos,PASIVO,NO,4
+210803,Otras Cuentas por Pagar a Relacionadas,PASIVO,SI,4
+2109,Impuestos Por Pagar,PASIVO,NO,3
+210901,Impuestos Por Pagar,PASIVO,NO,4
+21090101,IVA por Pagar,PASIVO,SI,5
+21090102,Pago a Cuenta,PASIVO,SI,5
+21090103,Impuesto Sobre la Renta,PASIVO,SI,5
+2110,Dividendos por Pagar,PASIVO,NO,3
+211001,Dividendos Decretados por Pagar,PASIVO,NO,4
+2111,Anticipos de Clientes,PASIVO,NO,3
+211101,Anticipos de Clientes,PASIVO,NO,4
+2112,Obligaciones por Arrendamiento Financiero Corto Plazo,PASIVO,NO,3
+211201,Obligaciones por Arrendamiento Financiero Corto Plazo,PASIVO,NO,4
+22,Pasivo No Corriente,PASIVO,NO,2
+2201,Prestamos Bancarios a Largo Plazo,PASIVO,NO,3
+220101,Prestamos Bancarios a Largo Plazo,PASIVO,NO,4
+2202,Obligaciones por Arrendamiento Financiero Largo Plazo,PASIVO,NO,3
+220201,Obligaciones por Arrendamiento Financiero Largo Plazo,PASIVO,NO,4
+2203,Pasivo por Impuesto Sobre la Renta Diferido,PASIVO,NO,4
+220301,Pasivo por Impuesto Sobre la Renta Diferido,PASIVO,SI,4
+2204,Beneficios a Empleados Largo Plazo,PASIVO,NO,3
+220401,Indemnizaciones,PASIVO,NO,4
+2205,Otras Obligaciones a Largo Plazo,PASIVO,NO,3
+220501,Otras Obligaciones a Largo Plazo,PASIVO,NO,4
+3,Patrimonio,PATRIMONIO,NO,1
+31,Patrimonio,PATRIMONIO,NO,2
+3101,Capital Social,PATRIMONIO,NO,3
+310101,Capital Social Pagado,PATRIMONIO,SI,4
+310102,Capital Social No Pagado,PATRIMONIO,SI,4
+3102,Reserva Legal,PATRIMONIO,NO,3
+310201,Ejercicios Anteriores,PATRIMONIO,SI,4
+310202,Ejercicio Corriente,PATRIMONIO,SI,4
+3103,Superavit por Revaluacion de Activo Fijo,PATRIMONIO,NO,3
+310301,Bienes Inmuebles,PATRIMONIO,NO,4
+310302,Bienes Muebles,PATRIMONIO,NO,4
+3104,Utilidades Acumuladas,PATRIMONIO,NO,3
+310401,Ejercicios Anteriores,PATRIMONIO,NO,4
+31040101,Utilidades año 2015,PATRIMONIO,SI,5
+31040102,Utilidades del Ejercicio 2022,PATRIMONIO,SI,5
+31040103,Utilidades del Ejercicio 2023,PATRIMONIO,SI,5
+3105,Perdidas Acumuladas,PATRIMONIO,NO,3
+310501,Ejercicios Anteriores,PATRIMONIO,NO,4
+31050101,Perdida del Ejercicio 2016,PATRIMONIO,SI,5
+3106,Resultados del Ejercicio,PATRIMONIO,NO,3
+310601,Utilidad del Ejercio,PATRIMONIO,SI,4
+310602,Perdidas del Ejercicio,PATRIMONIO,SI,4
+3107,Efectos por Adopcion a NIIF,PATRIMONIO,NO,3
+310701,Efecto por Adopcion a NIIF,PATRIMONIO,SI,4
+4,Cuentas de Resultado Deudoras,COSTO,NO,1
+41,Costos,COSTO,NO,2
+4101,Costo de Ventas,COSTO,NO,3
+410101,Costo de Venta de Servicios,COSTO,NO,4
+4102,Costo de Ventas,COSTO,NO,3
+410201,Costo de Ventas por Servicios,COSTO,NO,4
+41020101,Costos por Servicios de Auditoria,COSTO,SI,5
+41020102,Costos por Servicios Contables,COSTO,SI,5
+41020103,Costos por Servicios de Legalizacion,COSTO,SI,5
+41020104,Costos por Servicios de Asesoria,COSTO,SI,5
+42,Gastos,GASTOS,NO,2
+4201,Gastos de Venta,GASTOS,NO,3
+420101,Gastos de Venta,GASTOS,NO,4
+4202,Gastos de Administracion,GASTOS,NO,3
+420201,Gastos de Administracion,GASTOS,NO,4
+42020101,Sueldos,GASTOS,SI,5
+42020102,Vacaciones,GASTOS,SI,5
+42020103,Aguinaldos,GASTOS,SI,5
+42020104,Cuota Patronal ISSS,GASTOS,SI,5
+42020105,Cuota Patronal AFP,GASTOS,SI,5
+42020106,Aranceles Entidades Gubernamentales,GASTOS,SI,5
+42020107,Combustibles y Lubricantes,GASTOS,SI,5
+42020108,Fovil -Cotrans,GASTOS,SI,5
+42020109,Comumincaciones,GASTOS,SI,5
+42020110,Mantenimiento de Oficina,GASTOS,SI,5
+42020111,Atenciones al Personal,GASTOS,SI,5
+42020112,Papeleria y Utilies,GASTOS,SI,5
+42020113,Capacitaciones al Personal,GASTOS,SI,5
+42020114,Mantenimiento de Vehiculos,GASTOS,SI,5
+42020115,Materiales y Utiles de Aseo,GASTOS,SI,5
+42020116,Depreciacion de Mobiliario y Equipos,GASTOS,SI,5
+42020117,Amortizacion de Intangibles,GASTOS,SI,5
+42020118,Viaticos y Alimentacion,GASTOS,SI,5
+42020119,Suscripciones en linea,GASTOS,SI,5
+42020120,Medicamentos pra Botiquin,GASTOS,SI,5
+42020121,Bonificaciones,GASTOS,SI,5
+42020122,Honorarios Legales,GASTOS,SI,5
+42020123,Honorarios de Auditoria,GASTOS,SI,5
+42020124,Seguros de Vehiculos,GASTOS,SI,5
+4203,Gastos Financieros,GASTOS,NO,3
+420301,Gastos Financieros,GASTOS,NO,4
+42030101,Intereses,GASTOS,SI,5
+42030102,Comisiones Bancarias,GASTOS,SI,5
+4204,Gastos No Operacionales,GASTOS,NO,3
+420401,Gastos No Operacionales,GASTOS,NO,4
+5,Cuentas de Resultado Acreedoras,INGRESOS,NO,1
+51,Ingresos,INGRESOS,NO,2
+5101,Ingresos por Ventas,INGRESOS,NO,3
+510101,Ingresos por Venta de Equipos Electronicos,INGRESOS,NO,4
+510102,Ingresos por Otros Servicios,INGRESOS,NO,4
+52,Ingresos Financieros,INGRESOS,NO,2
+5201,Ingresos Financieros,INGRESOS,NO,3
+520101,Intereses Bancarios,INGRESOS,SI,4
+520102,Otros Ingresos Financieros,INGRESOS,SI,4
+53,Ingresos No Operacionales,INGRESOS,NO,2
+5301,Ingresos no Operacionales,INGRESOS,NO,3
+530101,Otros Ingresos,INGRESOS,SI,4
+6,Cuenta Liquidadora de Resultados,LIQUIDACION,NO,1
+61,Cuenta Liquidadora,LIQUIDACION,NO,2
+6101,Perdidas y Ganancias,LIQUIDACION,NO,3
+610101,Perdidas y Ganancias,LIQUIDACION,SI,4

@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from .models import Cuenta, Periodo, Transaccion
 from django.db.models import Sum
+# Create your views here.
 
 @login_required(login_url='/signin/')
 def index(request):
