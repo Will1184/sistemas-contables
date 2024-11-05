@@ -7,6 +7,8 @@ class Cuenta(models.Model):
         ('ACTIVO', 'Activo'),
         ('PASIVO', 'Pasivo'),
         ('PATRIMONIO', 'Patrimonio'),
+        ('INGRESOS', 'Ingresos'),
+        ('GASTOS', 'Gastos'),
         ('RESULTADO_DEUDOR', 'Cuentas de Resultado Deudoras'),
         ('RESULTADO_ACREEDOR', 'Cuentas de Resultado Acreedoras'),
         ('CIERRE', 'Cuenta de Cierre'),

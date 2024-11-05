@@ -44,23 +44,34 @@ def transaccion(request):
 @login_required(login_url='/signin/')
 def agregarTransaccion(request):
     Cuentas = Cuenta.objects.all().values('id','nombre')
-    Periodos = Periodo.objects.all().values('id','nombre')
+    Periodos = Periodo.objects.all().values('id','mes','ano')
     context = {
         'Cuentas':Cuentas,
         'Periodos':Periodos
     }
     if request.method == 'POST':
-        cuenta = request.POST['cuenta']
-        periodo = request.POST['periodo']
-        fecha = request.POST['fecha']
-        descripcion = request.POST['descripcion']
-        cuenta_debe = request.POST['debe']
-        cuenta_haber = request.POST['haber']
-        transaccion = Transaccion(cuenta_id=cuenta,periodo_id=periodo,fecha=fecha,descripcion=descripcion,debe=cuenta_debe,haber=cuenta_haber)
-        transaccion.save()
-        return redirect('transacciones')
+        cuentas = request.POST.getlist('cuenta')
+        periodos = request.POST.getlist('periodo')
+        fechas = request.POST.getlist('fecha')
+        deudas = request.POST.getlist('debe')
+        haberes = request.POST.getlist('haber')
+        descripciones = request.POST.getlist('descripcion')
 
-    return render(request,'Transaccion/agregar_transaccion.html',
+        for i in range(len(cuentas)):
+            if cuentas[i] and periodos[i]:  # Asegúrate de que los campos necesarios estén completos
+                transaccion = Transaccion(
+                    cuenta_id=cuentas[i],
+                    periodo_id=periodos[i],
+                    fecha=fechas[i],
+                    debe=deudas[i],
+                    haber=haberes[i],
+                    descripcion=descripciones[i]
+                )
+                transaccion.save()
+        return redirect('transacciones')  # Redirigir a la vista de transacciones
+
+    else:
+        return render(request,'Transaccion/agregar_transaccion.html',
                 context
                 )
 
@@ -74,15 +85,17 @@ def eliminarTransaccion(request,id):
 @login_required(login_url='/signin/')
 def agregarPeriodo(request):
     if request.method == 'POST':
-        nombre = request.POST['id_nombre']
-        fecha_inicio = request.POST['fecha_inicio']
-        fecha_fin = request.POST['fecha_final']
+        mes = request.POST.get('mes')  # Cambia a get para evitar MultiValueDictKeyError
+        ano = request.POST.get('ano')
         
-        perido = Periodo(nombre=nombre,fecha_inicio=fecha_inicio,fecha_fin=fecha_fin)
-        perido.save()
-        return redirect('transacciones')
+        if mes and ano:  # Verifica que mes y ano no sean None
+            periodo = Periodo(mes=int(mes), ano=int(ano))  # Convierte a entero si es necesario
+            periodo.save()
+            return redirect('transacciones')  # Asegúrate de que 'transacciones' sea el nombre correcto
     else:
-        return render(request,'Transaccion/agregar_periodo.html')
+        meses = range(1, 13)  # Crear una lista de meses
+        
+    return render(request, 'Transaccion/agregar_periodo.html', {'meses': meses})
 
 #view de totalizar periodo
 @login_required(login_url='/signin/')

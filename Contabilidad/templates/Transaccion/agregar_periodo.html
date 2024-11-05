@@ -1,25 +1,25 @@
-
 {% extends "nav.html" %}
 {% block content %}
 
 <div class="container mt-5">
-    <h1 class="mb-4">Venta de Productos</h1>        
-     <!-- Formulario para adquisición de productos -->
-     <form action="/transacciones/agregarPeriodo/" method="POST">
+    <h1 class="mb-4">Agregar Periodo</h1>        
+    <!-- Formulario para adquisición de periodos -->
+    <form action="/transacciones/agregarPeriodo/" method="POST">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="id_nombre">Nombre:</label>
-            <input type="text" name="id_nombre" id="id_nombre" class="form-control" required>
-        </div>
         
         <div class="form-group">
-            <label for="fecha_venta"> fecha Inicio de periodo:</label>
-            <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control"  required>
+            <label for="id_mes">Mes:</label>
+            <select name="mes" id="id_mes" class="form-control" required>
+                <option value="">Seleccione un mes</option>
+                {% for month in meses %}
+                    <option value="{{ month }}">{{ month }}</option>
+                {% endfor %}
+            </select>
         </div>
 
         <div class="form-group">
-            <label for="fecha_venta"> fecha final de periodo</label>
-            <input type="date" name="fecha_final" id="fecha_final" class="form-control"  required>
+            <label for="id_ano">Año:</label>
+            <input type="number" name="ano" id="id_ano" class="form-control" required placeholder="Ejemplo: 2024" min="2000" max="2100">
         </div>
 
         <button type="submit" class="btn" style="background: #f50d40; color: aliceblue;">
@@ -27,6 +27,6 @@
         </button>
         <a href="{% url 'transacciones' %}" class="btn btn-secondary">Cancelar</a>
     </form>    
-</div
+</div>
 
 {% endblock %}
