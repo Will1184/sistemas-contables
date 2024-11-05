@@ -7,6 +7,16 @@
          <form method="POST">
             {% csrf_token %}
             <div class="form-group">
+                <label for="periodo">Periodo:</label>
+                <select name="periodo" id="periodo" class="form-control" required>
+                    <option value="">Selecciona un periodo</option>
+                    {% for periodo in periodos %}
+                        <option value="{{ periodo.id }}">{{ periodo.mes}}-{{periodo.ano}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="id_nombre">Nombre:</label>
                 <input type="text" name="nombre" id="id_nombre" class="form-control" value="{{ producto.nombre }}" required>
             </div>
