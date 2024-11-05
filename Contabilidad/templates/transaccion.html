@@ -29,7 +29,6 @@
                         <th scope="col">Debe</th>
                         <th scope="col">Haber</th>
                         <th scope="col">Descripcion</th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +40,6 @@
                         <td>{{Transaccion.debe}}</td>
                         <td>{{Transaccion.haber}}</td>
                         <td>{{Transaccion.descripcion}}</td>
-                        <td><a href="eliminarTransaccion/{{Transaccion.id}}"><button type="button" class="btn btn-danger">Eliminar</button></a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
