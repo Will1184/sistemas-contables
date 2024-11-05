@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from .models import Cuenta, Periodo, Transaccion
+from django.db.models import Sum
 
 # Create your views here.
 @login_required(login_url='/signin/')
@@ -22,10 +23,23 @@ def catalogoCuenta(request):
 #view de Transacciones
 @login_required(login_url='/signin/')
 def transaccion(request):
-    Transacciones = Transaccion.objects.all()
-    return render(request,'transaccion.html',{
-        'Transacciones':Transacciones}
-                  )
+    if request.method == 'POST':
+        periodo = request.POST['periodo']
+        transacciones = Transaccion.objects.filter(periodo_id=periodo)
+        Periodos = Periodo.objects.all().values('id','nombre')
+        context = { 
+            'Transacciones':transacciones,
+            'Periodos':Periodos
+        }
+        return render(request,'transaccion.html',context)
+    else:
+        Transacciones = Transaccion.objects.all()
+        Periodos = Periodo.objects.all()
+        contex = {
+            'Transacciones':Transacciones,
+            'Periodos':Periodos
+        }
+        return render(request,'transaccion.html',contex)
 
 #view de agregar transaccion
 @login_required(login_url='/signin/')
@@ -70,6 +84,43 @@ def agregarPeriodo(request):
         return redirect('transacciones')
     else:
         return render(request,'Transaccion/agregar_periodo.html')
+
+#view de totalizar periodo
+@login_required(login_url='/signin/')
+def totalizar(request):
+    # Calcula el total de 'debe' y 'haber'
+    total_debe = Transaccion.objects.aggregate(total_debe=Sum('debe'))['total_debe'] or 0
+    total_haber = Transaccion.objects.aggregate(total_haber=Sum('haber'))['total_haber'] or 0
+    
+    # Obtiene todas las transacciones para mostrarlas en la vista
+    transacciones = Transaccion.objects.all()
+    
+    return render(request, 'Transaccion/totalizar.html', {
+        'total_debe': total_debe,
+        'total_haber': total_haber,
+        'transacciones': transacciones,
+    }) 
+
+#libro mayor
+def libroMayor(request):
+    # Agrupar las transacciones por cuenta y calcular totales
+    cuentas_con_totales = (
+        Transaccion.objects.values('cuenta__id', 'cuenta__nombre')
+        .annotate(total_debe=Sum('debe'), total_haber=Sum('haber'))
+        .order_by('cuenta__id')
+    )
+    
+    # Obtener todas las transacciones ordenadas por cuenta
+    transacciones = Transaccion.objects.order_by('cuenta__id', 'fecha')
+    
+    return render(request, 'Transaccion/libro_mayor.html', {
+        'cuentas_con_totales': cuentas_con_totales,
+        'transacciones': transacciones,
+    })
+
+
+
+
 
 #view de Balance comprobacion
 @login_required(login_url='/signin/')
